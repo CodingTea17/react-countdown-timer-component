@@ -13,6 +13,17 @@ class Clock extends Component {
     this.timeUntilReturn(this.props.returnTime);
   }
 
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.timeUntilReturn(this.props.returnTime),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
   timeUntilReturn(returnTime) {
     // Nexmo messages come with a UTC timestamp so to calculate the time until return I use 'Date.now()' which returns the number of milliseconds elapsed since January 1, 1970 00:00:00 UTC.
     const time = Date.parse(returnTime) - Date.now();
@@ -26,6 +37,7 @@ class Clock extends Component {
     // Minutes are calculated as the remainder of dividing all the minutes by 60. (0-59)
     const minutes = Math.floor((time / 60000) % 60);
 
+    // key:value shorthand syntax
     this.setState({ seconds, minutes })
   }
 
