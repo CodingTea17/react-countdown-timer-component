@@ -12,7 +12,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <Clock returnTime={ new Date("January 4, 2018 12:03:30") } />
+        <Clock returnTime={ new Date(Date.UTC(2018, 0, 4, 3, 8, 39)) } />
       </div>
     );
   }
