@@ -33,11 +33,8 @@ class Clock extends Component {
       // Seconds are calculated as the remainder of dividing all the seconds by 60. (0-59)
       const seconds = Math.floor((time / 1000) % 60);
 
-      /*********** TODO **********/
-      /* Update minutes to reach 99 */
-      /***************************/
-      // Minutes are calculated as the remainder of dividing all the minutes by 60. (0-59)
-      const minutes = Math.floor((time / 60000) % 60);
+      // Minutes are calculated as the remainder of dividing all the minutes by 100. (0-99)
+      const minutes = Math.floor((time / 60000) % 100);
 
       // key:value shorthand syntax
       return this.setState({ seconds, minutes })
