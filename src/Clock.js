@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import CircularProgressBar from './CircularProgressCircle';
+import './Clock.css';
 
 class Clock extends Component {
   constructor(props) {
@@ -54,12 +56,25 @@ class Clock extends Component {
     return `${formattedMins}:${formattedSecs}`;
   }
 
-
+  calculatePercentage() {
+    const percentage = Math.floor((Date.now() - Date.parse(this.props.sentTime)) / (Date.parse(this.props.returnTime) - Date.parse(this.props.sentTime)) * 100);
+    if ( percentage <= 100 ) {
+      return -percentage;
+    }
+    clearInterval(this.timerID);
+    return 100;
+  }
 
   render() {
     return (
       <div>
-        <h1>{ this.formatTime(this.state.minutes, this.state.seconds) }</h1>
+        <h1>{ console.log(this.calculatePercentage()) }</h1>
+          <CircularProgressBar
+            strokeWidth="25"
+            sqSize="200"
+            timeLeft={ this.formatTime(this.state.minutes, this.state.seconds) }
+            percentage={ this.calculatePercentage() }
+          />
       </div>
     );
   }
