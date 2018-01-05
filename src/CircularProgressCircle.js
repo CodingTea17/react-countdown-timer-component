@@ -1,5 +1,21 @@
 import React, { Component } from 'react';
 
+const circleText = {
+  fontSize: '3em',
+  fontWeight: 'bold',
+  fill: 'black'
+};
+
+const backgroundCircle = {
+  stroke: 'black',
+  fill: 'none'
+};
+
+const progressCircle = {
+  stroke: '#ddd',
+  fill: 'none'
+};
+
 class CircularProgressCircle extends Component {
   constructor(props) {
     super(props);
@@ -20,28 +36,32 @@ class CircularProgressCircle extends Component {
 
     return (
       <svg
-          width={this.props.sqSize}
-          height={this.props.sqSize}
-          viewBox={viewBox}>
+          width={ this.props.sqSize }
+          height={ this.props.sqSize }
+          viewBox={ viewBox }
+      >
           <circle
-            className="circle-background"
-            cx={this.props.sqSize / 2}
-            cy={this.props.sqSize / 2}
-            r={radius}
-            strokeWidth={`${this.props.strokeWidth}px`} />
+            style={ backgroundCircle }
+            cx={ this.props.sqSize / 2 }
+            cy={ this.props.sqSize / 2 }
+            r={ radius }
+            strokeWidth={ `${this.props.strokeWidth}px` }
+          />
           <circle
-            className="circle-progress"
-            cx={this.props.sqSize / 2}
-            cy={this.props.sqSize / 2}
-            r={radius}
-            strokeWidth={`${this.props.strokeWidth}px`}
+            cx={ this.props.sqSize / 2 }
+            cy={ this.props.sqSize / 2 }
+            r={ radius }
+            strokeWidth={ `${parseInt(this.props.strokeWidth, 10) - 2}px` }
             transform={`rotate(270 ${this.props.sqSize / 2} ${this.props.sqSize / 2})`}
             style={{
+              stroke: progressCircle.stroke,
+              fill: progressCircle.fill,
               strokeDasharray: dashArray,
               strokeDashoffset: dashOffset
-            }} />
+            }}
+          />
           <text
-            className="circle-text"
+            style={ circleText }
             x="50%"
             y="50%"
             dy=".3em"

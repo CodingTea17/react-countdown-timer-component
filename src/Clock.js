@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CircularProgressBar from './CircularProgressCircle';
-import './Clock.css';
 
 class Clock extends Component {
   constructor(props) {
@@ -16,13 +15,27 @@ class Clock extends Component {
   }
 
   componentDidMount() {
+    // Initially set the interval to calculate the time until return
     this.timerID = setInterval(
       () => this.timeUntilReturn(this.props.returnTime),
       1000
     );
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.returnTime !== this.props.returnTime) {
+      // If the returnTime changes, clear the interval
+      clearInterval(this.timerID);
+      // Restart the interval to continue counting down
+      this.timerID = setInterval(
+        () => this.timeUntilReturn(this.props.returnTime),
+        1000
+      );
+    }
+  }
+
   componentWillUnmount() {
+    // Make sure the interval is cleared if the component is unmounted
     clearInterval(this.timerID);
   }
 
@@ -41,6 +54,8 @@ class Clock extends Component {
       // key:value shorthand syntax
       return this.setState({ seconds, minutes })
     }
+    // Once the return time has been reached, clear the interval to prevent leaks
+    clearInterval(this.timerID);
     return this.setState({
       seconds: 0,
       minutes: 0
@@ -61,14 +76,12 @@ class Clock extends Component {
     if ( percentage <= 100 ) {
       return -percentage;
     }
-    clearInterval(this.timerID);
     return 100;
   }
 
   render() {
     return (
       <div>
-        <h1>{ console.log(this.calculatePercentage()) }</h1>
           <CircularProgressBar
             strokeWidth="25"
             sqSize="200"

@@ -13,8 +13,24 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <Clock
-          returnTime={ new Date(Date.UTC(2018, 0, 4, 4, 51, 39)) }
-          sentTime={ new Date(Date.UTC(2018, 0, 4, 4, 48, 39)) }
+          returnTime={ new Date(Date.UTC(2018, 0, 4, 5, 31, 39)) }
+          sentTime={ new Date(Date.UTC(2018, 0, 4, 5, 15, 39)) }
+        />
+        <Clock
+          returnTime={ new Date(Date.UTC(2018, 0, 4, 5, 27, 39)) }
+          sentTime={ new Date(Date.UTC(2018, 0, 4, 5, 15, 39)) }
+        />
+        <Clock
+          returnTime={ new Date(Date.UTC(2018, 0, 4, 5, 24, 39)) }
+          sentTime={ new Date(Date.UTC(2018, 0, 4, 5, 15, 39)) }
+        />
+        <Clock
+          returnTime={ new Date(Date.UTC(2018, 0, 4, 5, 28, 39)) }
+          sentTime={ new Date(Date.UTC(2018, 0, 4, 5, 15, 39)) }
+        />
+        <Clock
+          returnTime={ new Date(Date.UTC(2018, 0, 4, 5, 19, 39)) }
+          sentTime={ new Date(Date.UTC(2018, 0, 4, 5, 15, 39)) }
         />
       </div>
     );
